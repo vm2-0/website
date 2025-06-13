@@ -1,6 +1,5 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
-import { resolve } from 'path';
 import { NodeGlobalsPolyfillPlugin } from "@esbuild-plugins/node-globals-polyfill";
 
 export default defineConfig({
@@ -24,12 +23,6 @@ export default defineConfig({
     strictPort: true,
     watch: {
       usePolling: true
-    },
-    proxy: {
-      '/socket.io': {
-        target: 'http://backend:8001',
-        ws: true
-      }
     }
   }
 });

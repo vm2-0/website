@@ -1,17 +1,42 @@
-FROM node:20-slim
+FROM node:lts-slim AS base
 
-WORKDIR /usr/src/app/frontend
+LABEL fly_launch_runtime="SvelteKit"
 
-# Copy package files first to leverage Docker cache
-COPY package*.json ./
+# SvelteKit app lives here
+WORKDIR /app
 
-# Install dependencies
-RUN npm ci
+# Set production environment
+ENV NODE_ENV="production"
 
-# Copy the rest of the application code
+# Throw-away build stage to reduce size of final image
+FROM base AS build
+
+# Install packages needed to build node modules
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y build-essential node-gyp pkg-config python-is-python3
+
+# Install node modules
+COPY .npmrc package-lock.json package.json ./
+RUN npm ci --include=dev
+
+# Copy application code
 COPY . .
 
+# Build application
 RUN npm run build
 
-# Expose port 5173 (Vite's default port)
-EXPOSE 5173
+# Remove development dependencies
+RUN npm prune --omit=dev
+
+
+# Final stage for app image
+FROM base
+
+# Copy built application
+COPY --from=build /app/build /app/build
+COPY --from=build /app/node_modules /app/node_modules
+COPY --from=build /app/package.json /app
+
+# Start the server by default, this can be overwritten at runtime
+EXPOSE 3000
+CMD [ "node", "./build/index.js" ]

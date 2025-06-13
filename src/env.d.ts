@@ -1,6 +1,6 @@
 declare namespace NodeJS {
   interface ProcessEnv {
-    API_URL?: string;
+    PUBLIC_API_URL?: string;
     VIRAL_TOKEN?: string;
   }
 }

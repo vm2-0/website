@@ -3,6 +3,7 @@
   import { walletStore } from '$lib/walletStore';
   import { Coins } from 'lucide-svelte';
   import { Buffer } from 'buffer';
+  import { env } from '$env/dynamic/public';
 
   let token = '';
   let connecting = false;
@@ -51,9 +52,8 @@
       const signature = await $walletStore.signMessage(messageBytes);
       const signatureBase64 = Buffer.from(signature).toString('base64');
 
-      console.log(import.meta.env);
       // Send address, signature and timestamp to backend
-      await fetch(import.meta.env.VITE_API_URL + '/api/v1/wallet/connect', {
+      await fetch(env.PUBLIC_API_URL + '/api/v1/wallet/connect', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -1,0 +1,15 @@
+services:
+  frontend-dev:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.dev
+    container_name: frontend
+    working_dir: /app
+    tty: true
+    ports:
+      - "5173:5173"
+    command: npm run dev
+    volumes: 
+      - ./:/app/
+    environment:
+      - PUBLIC_API_URL=http://localhost:8001
