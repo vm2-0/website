@@ -1,7 +1,6 @@
 <script lang="ts">
   import '../app.css';
   import Navbar from '$lib/components/Navbar.svelte';
-  import GymHeader from '$lib/components/GymHeader.svelte';
   import { page } from '$app/state';
   import WalletProvider from '$lib/components/solana/WalletProvider.svelte';
   import { PhantomWalletAdapter } from '@solana/wallet-adapter-phantom';
@@ -11,8 +10,6 @@
 
   const localStorageKey = 'walletAdapter';
   const walletAdapters = [new PhantomWalletAdapter(), new SolflareWalletAdapter()];
-
-  const isGymRoute = $derived(page.url.pathname.startsWith('/gym'));
 
   const title = $derived.by(() => {
     let pre = 'viralmind.ai';
@@ -47,11 +44,7 @@
 
 <WalletProvider {localStorageKey} wallets={walletAdapters} autoConnect />
 <div class="bg-white">
-  {#if isGymRoute}
-    <GymHeader />
-  {:else}
-    <Navbar />
-  {/if}
+  <Navbar />
   {@render children()}
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TQ5Z1BBEGG"></script>

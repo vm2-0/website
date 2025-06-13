@@ -51,8 +51,9 @@
       const signature = await $walletStore.signMessage(messageBytes);
       const signatureBase64 = Buffer.from(signature).toString('base64');
 
+      console.log(import.meta.env);
       // Send address, signature and timestamp to backend
-      await fetch('/api/v1/wallet/connect', {
+      await fetch(import.meta.env.VITE_API_URL + '/api/v1/wallet/connect', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

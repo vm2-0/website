@@ -2,7 +2,6 @@
   import logo_full from '$lib/assets/Logo_Standard_dark.png';
   import logo from '$lib/assets/logo.png';
   import exampleUsage from '$lib/assets/exampleusage.mp4';
-  import data from '$lib/assets/databrwozing.mp4';
   import gym from '$lib/assets/gym.png';
   import ButtonCTA from '$lib/components/ButtonCTA.svelte';
   import { onMount } from 'svelte';
@@ -26,11 +25,9 @@
     Download,
     Github,
     Star,
-    Coins,
     Info,
     Copy
   } from 'lucide-svelte';
-  import type { SettingsRes } from '$lib/types';
   import VideoPopup from '$lib/components/VideoPopup.svelte';
   import posthog from 'posthog-js';
 
@@ -50,7 +47,6 @@
   let placeholderIndex = 0;
   let estimatedAmount = 75000; // Default value
   let pricePerDemo = 5.5; // Default value
-  let settings: SettingsRes;
   let showTrainingVideo = false;
   let showForgeVideo = false;
   let showAgentVideo = false;
@@ -116,17 +112,6 @@
             action: 'doubleClick(450, 120)'
           }
         ];
-      });
-
-    // Fetch settings
-    fetch('/api/v1/settings')
-      .then(async (res) => {
-        if (!res.ok) throw Error(res.status + ': ' + res.statusText);
-        const result = await res.json();
-        settings = result.success ? result.data : result;
-      })
-      .catch((error) => {
-        console.error('Failed to fetch settings:', error);
       });
   });
 
@@ -650,17 +635,54 @@
   <section class="bg-gray-100 py-20">
     <div class="mx-auto max-w-6xl px-4">
       <h2 class="mb-12 text-center text-4xl font-bold text-gray-900">Frequently Asked Questions</h2>
-
-      {#if settings?.faq}
-        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {#each settings.faq as faq}
-            <div class="rounded-lg p-6">
-              <h3 class="mb-3 text-lg font-semibold text-gray-900">{faq.question}</h3>
-              <p class="text-gray-600">{faq.answer}</p>
-            </div>
-          {/each}
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div class="rounded-lg p-6">
+          <h3 class="mb-3 text-lg font-semibold text-gray-900">How far along is this project?</h3>
+          <p class="text-gray-600">
+            We completed our data infrastructure, we're now expanding partnerships while developing
+            advanced action models from community data.
+          </p>
         </div>
-      {/if}
+        <div class="rounded-lg p-6">
+          <h3 class="mb-3 text-lg font-semibold text-gray-900">What is a computer-use agent?</h3>
+          <p class="text-gray-600">
+            An AI system that operates computer applications like a human, handling tasks across
+            multiple programs based on natural language instructions.
+          </p>
+        </div>
+        <div class="rounded-lg p-6">
+          <h3 class="mb-3 text-lg font-semibold text-gray-900">Who is behind ViralMind?</h3>
+          <p class="text-gray-600">
+            ViralMind is founded by AI researchers from MIT and Microsoft passionate about
+            democratizing this technology.
+          </p>
+        </div>
+        <div class="rounded-lg p-6">
+          <h3 class="mb-3 text-lg font-semibold text-gray-900">
+            Will the training data also be released?
+          </h3>
+          <p class="text-gray-600">
+            Yes, we are 'open weights' and 'open data', under MIT license.
+          </p>
+        </div>
+        <div class="rounded-lg p-6">
+          <h3 class="mb-3 text-lg font-semibold text-gray-900">How does the data economy work?</h3>
+          <p class="text-gray-600">
+            Our token rewards quality demonstrations with scaled $VIRAL payments, allowing
+            contributors to grow individually while the community collectively determines fair
+            compensation rates.
+          </p>
+        </div>
+        <div class="rounded-lg p-6">
+          <h3 class="mb-3 text-lg font-semibold text-gray-900">
+            What are the tokenomics of $VIRAL?
+          </h3>
+          <p class="text-gray-600">
+            We launched $VIRAL fairly with no presales, locked dev-supply until 2026, self-funded
+            treasury, with a 20% fee on training pools going towards developer wages and liquidity.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 </div>
