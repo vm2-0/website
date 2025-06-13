@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "name": "viralmind.ai",
+  "short_name": "vm.ai",
+  "theme_color": "#9333ea",
+  "background_color": "#000000",
+  "display": "browser",
+  "scope": "/",
+  "start_url": "/"
+}
