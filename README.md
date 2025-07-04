@@ -1,18 +1,11 @@
-# sv
+# Viralmind Website
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+This is the website for the Viralmind project.
 
-## Creating a project
+Computer-Use AI for everyone.
+We believe we can create a revolution.
+Building the foundation for powerful computer-use agents through crowdsourced action datasets, open-source tools, and frontier agent models. We want to improve the world by providing amazing computer-use agents.
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
-```
 
 ## Developing
 
