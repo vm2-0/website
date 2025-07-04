@@ -212,12 +212,6 @@
                 class="absolute left-0 mt-2 w-48 rounded-lg border border-gray-200 bg-white py-2 shadow-lg"
                 transition:slide>
                 <a
-                  href="/datasets"
-                  class="flex items-center gap-2 px-4 py-2 text-sm text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900">
-                  <Database class="h-4 w-4" />
-                  Datasets
-                </a>
-                <a
                   href="https://docs.viralmind.ai/"
                   target="_blank"
                   class="flex items-center gap-2 px-4 py-2 text-sm text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900">
@@ -328,12 +322,6 @@
           <!-- Research Section -->
           <div class="border-t border-gray-200 pt-2">
             <p class="px-2 py-1 text-xs font-semibold uppercase text-gray-500">Research</p>
-            <a
-              href="/datasets"
-              class="flex items-center gap-3 px-2 py-2 text-gray-600 transition-colors hover:text-gray-900">
-              <Database class="h-5 w-5" />
-              Datasets
-            </a>
             <a
               href="https://docs.viralmind.ai/"
               target="_blank"
