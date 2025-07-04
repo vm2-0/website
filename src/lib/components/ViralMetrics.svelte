@@ -14,12 +14,12 @@
   async function fetchPrices() {
     try {
       const response = await fetch(
-        'https://api.jup.ag/price/v2?ids=HW7D5MyYG4Dz2C98axfjVBeLWpsEnofrqy6ZUwqwpump,So11111111111111111111111111111111111111112'
+        'https://lite-api.jup.ag/price/v3?ids=HW7D5MyYG4Dz2C98axfjVBeLWpsEnofrqy6ZUwqwpump,So11111111111111111111111111111111111111112'
       );
       const json = await response.json();
 
-      viralPrice = parseFloat(json.data[TOKEN_DATA.contractAddress].price);
-      solPrice = parseFloat(json.data.So11111111111111111111111111111111111111112.price);
+      viralPrice = json[TOKEN_DATA.contractAddress].usdPrice;
+      solPrice = json['So11111111111111111111111111111111111111112'].usdPrice;
       viralPerSol = solPrice / viralPrice;
     } catch (error) {
       console.error('Error fetching prices:', error);
@@ -37,7 +37,8 @@
 <!-- Token Metrics Grid -->
 <div class="grid gap-8 md:grid-cols-2">
   <!-- SOL Price -->
-  <div class="flex flex-col justify-between rounded-2xl border border-gray-100 bg-gradient-to-br from-white to-purple-50/30 p-8 shadow-lg transition-transform hover:scale-[1.02]">
+  <div
+    class="flex flex-col justify-between rounded-2xl border border-gray-100 bg-gradient-to-br from-white to-purple-50/30 p-8 shadow-lg transition-transform hover:scale-[1.02]">
     <div class="mb-6 flex items-center gap-3">
       <div class="rounded-xl bg-purple-100/50 p-3">
         <ArrowUpDown class="h-7 w-7 text-purple-500" />
@@ -55,7 +56,8 @@
   </div>
 
   <!-- Market Cap -->
-  <div class="flex flex-col justify-between rounded-2xl border border-gray-100 bg-gradient-to-br from-white to-purple-50/30 p-8 shadow-lg transition-transform hover:scale-[1.02]">
+  <div
+    class="flex flex-col justify-between rounded-2xl border border-gray-100 bg-gradient-to-br from-white to-purple-50/30 p-8 shadow-lg transition-transform hover:scale-[1.02]">
     <div class="mb-6 flex items-center gap-3">
       <div class="rounded-xl bg-purple-100/50 p-3">
         <BarChart3 class="h-7 w-7 text-purple-500" />
