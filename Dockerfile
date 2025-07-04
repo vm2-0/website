@@ -11,7 +11,11 @@ RUN npm ci
 # Copy the rest of the application code
 COPY . .
 
+# Build the SvelteKit application
 RUN npm run build
 
-# Expose port 5173 (Vite's default port)
-EXPOSE 5173
+# Expose the port the app runs on
+EXPOSE 3000
+
+# Start the application
+CMD ["node", "build/index.js"]
