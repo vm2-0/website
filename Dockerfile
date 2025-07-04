@@ -31,4 +31,4 @@ COPY --from=builder /usr/src/app/frontend/build ./build
 EXPOSE 3000
 
 # Start the application
-CMD ["node", "build/index.js"]
+CMD ["npm", "run", "start"]
