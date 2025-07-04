@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - 1-deploy-website-to-flyio-via-cicd-github-actions
 
 jobs:
   deploy:
